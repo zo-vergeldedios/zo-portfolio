@@ -80,7 +80,7 @@ export default function Hero() {
           </p>
 
           {/* CTA buttons */}
-          <div className="flex gap-4 flex-wrap mb-12">
+          <div className="flex gap-3 flex-wrap mb-12">
             <a
               href="https://github.com/zo-vergeldedios"
               target="_blank"
