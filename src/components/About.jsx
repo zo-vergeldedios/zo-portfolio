@@ -38,11 +38,12 @@ export default function About() {
                 web applications using modern JavaScript tools and frameworks.
               </p>
               <p className="text-gray-400 leading-relaxed">
-                I hold a BS in Information Systems from the University of Santo
-                Tomas and have experience in product analytics at a YC-backed AI
-                startup using PostHog, Supabase, and SQL. Based in the Bay Area,
-                I’m actively building and exploring opportunities where I can
-                contribute, learn, and grow as a developer.
+                I hold a Bachelor's degree in Information Systems from the
+                University of Santo Tomas and gained experience in product
+                analytics at a YC-backed AI startup, working with PostHog,
+                Supabase, and SQL. Based in the Bay Area, I’m actively building
+                projects and exploring opportunities to contribute, learn, and
+                grow as a developer.
               </p>
             </div>
 

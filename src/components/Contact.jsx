@@ -59,7 +59,7 @@ export default function Contact() {
             // contact
           </p>
           <h2 className="font-display font-bold text-white text-4xl mb-3">
-            Get In Touch
+            Let's Connect
           </h2>
           <p className="text-gray-500 mb-10 max-w-md">
             Open to opportunities and collaborations. Feel free to reach out if

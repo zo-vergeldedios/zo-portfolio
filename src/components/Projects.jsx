@@ -21,7 +21,7 @@ const PROJECTS = [
     title: "Personal Portfolio",
     desc: "Designed and built my own developer portfolio from scratch using React and Tailwind CSS. Used Claude AI as a development tool throughout the build process. Dark-themed UI with scroll animations, mobile nav, and EmailJS contact form.",
     tech: ["React", "Tailwind CSS", "EmailJS", "Claude AI"],
-    github: "https://github.com/zo-vergeldedios",
+    github: "https://github.com/zo-vergeldedios/zo-portfolio",
     live: null,
     status: "Live",
   },
