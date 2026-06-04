@@ -28,25 +28,21 @@ export default function About() {
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div>
               <p className="text-gray-400 leading-relaxed mb-4">
-                I come from a background in sales and digital marketing, where I
-                spent several years learning how people make decisions and why
-                products succeed. That experience still shapes how I approach
-                building software today, especially around user behavior and
-                product thinking.
+                I build full-stack web applications using JavaScript, React,
+                Node.js, Express, PostgreSQL, and Supabase, focusing on solid
+                fundamentals and practical implementation.
               </p>
               <p className="text-gray-400 leading-relaxed mb-4">
-                In late 2024, I began learning software development and have
-                since been building full stack web applications using
-                JavaScript, React, Node.js, Express, PostgreSQL, and Supabase. I
-                focus on practical projects that strengthen my fundamentals and
-                help me understand how real applications are built.
+                I started learning software development in 2024 and have been
+                focused on strengthening my skills through building and refining
+                web applications using modern JavaScript tools and frameworks.
               </p>
               <p className="text-gray-400 leading-relaxed">
                 I hold a BS in Information Systems from the University of Santo
-                Tomas and gained experience working with product analytics at a
-                YC-backed AI startup using PostHog, Supabase, and SQL. Based in
-                the Bay Area, I enjoy building, learning, and improving through
-                hands-on work.
+                Tomas and have experience in product analytics at a YC-backed AI
+                startup using PostHog, Supabase, and SQL. Based in the Bay Area,
+                I’m actively building and exploring opportunities where I can
+                contribute, learn, and grow as a developer.
               </p>
             </div>
 
