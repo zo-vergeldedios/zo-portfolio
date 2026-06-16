@@ -29,21 +29,20 @@ export default function About() {
             <div>
               <p className="text-gray-400 leading-relaxed mb-4">
                 I build full-stack web applications using JavaScript, React,
-                Node.js, Express, PostgreSQL, and Supabase, focusing on solid
-                fundamentals and practical implementation.
+                Node.js, Express, PostgreSQL, and Supabase.
               </p>
               <p className="text-gray-400 leading-relaxed mb-4">
-                I started learning software development in 2024 and have been
-                focused on strengthening my skills through building and refining
-                web applications using modern JavaScript tools and frameworks.
-              </p>
-              <p className="text-gray-400 leading-relaxed">
                 I hold a Bachelor's degree in Information Systems from the
                 University of Santo Tomas and gained experience in product
                 analytics at a YC-backed AI startup, working with PostHog,
-                Supabase, and SQL. Based in the Bay Area, I’m actively building
-                projects and exploring opportunities to contribute, learn, and
-                grow as a developer.
+                Supabase, and SQL. Before transitioning into tech, I spent five
+                years in sales and digital marketing, giving me a strong
+                foundation in client communication and business development.
+              </p>
+              <p className="text-gray-400 leading-relaxed">
+                Based in the Bay Area, I am actively building projects and open
+                to both software development and technical sales roles where I
+                can contribute and grow.
               </p>
             </div>
 

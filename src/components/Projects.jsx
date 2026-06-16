@@ -4,7 +4,14 @@ const PROJECTS = [
   {
     title: "Workout Planner App",
     desc: "Full-stack tracker where users build workout programs, assign exercises per day, and track sets, reps, and weights. Supports progressive overload by saving per-session data to Supabase.",
-    tech: ["JavaScript", "Node", "Express", "Supabase", "SQL"],
+    tech: [
+      "JavaScript",
+      "Node.js",
+      "Express",
+      "Supabase",
+      "SQL",
+      "Built Manually",
+    ],
     github: "https://github.com/zo-vergeldedios/workout-planner-app",
     live: null,
     status: "Built",
@@ -12,18 +19,33 @@ const PROJECTS = [
   {
     title: "Weather Email App",
     desc: "Automated weather notification system that fetches real-time data and sends hourly email updates using Mailgun and Open Meteo APIs. API keys secured via dotenv.",
-    tech: ["JavaScript", "Node", "Mailgun API", "Open Meteo API", "Supabase"],
+    tech: [
+      "JavaScript",
+      "Node.js",
+      "Mailgun API",
+      "Open Meteo API",
+      "Supabase",
+      "Built Manually",
+    ],
     github: "https://github.com/zo-vergeldedios/weather-email-app",
     live: null,
     status: "Built",
   },
   {
-    title: "Personal Portfolio",
-    desc: "Designed and built my own developer portfolio from scratch using React and Tailwind CSS. Used Claude AI as a development tool throughout the build process. Dark-themed UI with scroll animations, mobile nav, and EmailJS contact form.",
-    tech: ["React", "Tailwind CSS", "EmailJS", "Claude AI"],
-    github: "https://github.com/zo-vergeldedios/zo-portfolio",
+    title: "Job Tracker",
+    desc: "Full-stack app to manage job applications in one place. Track status from saved to offer, log interview notes and rejection reasons, and stay organized throughout your search.",
+    tech: [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "Supabase",
+      "Built with AI Assistance",
+    ],
+    github: "https://github.com/zo-vergeldedios/job-tracker-app",
     live: null,
-    status: "Live",
+    status: "Built",
   },
 ];
 
@@ -81,7 +103,16 @@ export default function Projects() {
                   </p>
                   <div className="flex flex-wrap gap-2 mb-5">
                     {p.tech.map((t) => (
-                      <span key={t} className="tech-badge">
+                      <span
+                        key={t}
+                        className={`tech-badge ${
+                          t === "Built Manually"
+                            ? "tech-badge-manual"
+                            : t === "Built with AI Assistance"
+                              ? "tech-badge-ai"
+                              : ""
+                        }`}
+                      >
                         {t}
                       </span>
                     ))}
