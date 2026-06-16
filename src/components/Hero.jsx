@@ -69,7 +69,7 @@ export default function Hero() {
               >
                 Zo{" "}
                 <span className="orange-glow" style={{ color: "#f97316" }}>
-                  Dios
+                  Vergel de Dios
                 </span>
               </h1>
 
