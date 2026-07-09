@@ -13,9 +13,9 @@ const PROJECTS = [
       "SQL",
       "Built Manually",
     ],
-    github: "https://fitdex-beige.vercel.app/",
-    live: null,
-    status: "Live",
+    github: null,
+    live: "https://fitdex-beige.vercel.app/",
+    status: "Live & Built",
   },
   {
     title: "Weather Email App",
@@ -120,14 +120,16 @@ export default function Projects() {
                   </div>
                 </div>
                 <div className="flex gap-3">
-                  <a
-                    href={p.github}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-gray-500 hover:text-orange-500 text-xs font-mono transition-colors"
-                  >
-                    GitHub →
-                  </a>
+                  {p.github && (
+                    <a
+                      href={p.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-gray-500 hover:text-orange-500 text-xs font-mono transition-colors"
+                    >
+                      GitHub →
+                    </a>
+                  )}
                   {p.live && (
                     <a
                       href={p.live}
