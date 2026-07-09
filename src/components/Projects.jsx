@@ -2,19 +2,20 @@ import { useEffect, useRef } from "react";
 
 const PROJECTS = [
   {
-    title: "Workout Planner App",
-    desc: "Full-stack tracker where users build workout programs, assign exercises per day, and track sets, reps, and weights. Supports progressive overload by saving per-session data to Supabase.",
+    title: "FitDex",
+    desc: "Full-stack workout tracker app where users build workout programs, assign exercises per day, and track sets, reps, and weights. Supports progressive overload by saving per-session data to Supabase.",
     tech: [
       "JavaScript",
+      "React",
       "Node.js",
       "Express",
       "Supabase",
       "SQL",
       "Built Manually",
     ],
-    github: "https://github.com/zo-vergeldedios/workout-planner-app",
+    github: "https://fitdex-beige.vercel.app/",
     live: null,
-    status: "Built",
+    status: "Live",
   },
   {
     title: "Weather Email App",
