@@ -13,7 +13,7 @@ const PROJECTS = [
       "SQL",
       "Built Manually",
     ],
-    github: null,
+    github: "https://github.com/zo-vergeldedios/fitdex",
     live: "https://fitdex-beige.vercel.app/",
     status: "Live & Built",
   },
