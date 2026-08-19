@@ -246,6 +246,14 @@ textarea::placeholder {
   transform: scale(1.02);
 }
 
+/* Compact variant, shared by the mobile nav and the contact section.
+   Declared after .btn-ghost, so it wins on source order — a Tailwind
+   `text-[11px]` would not, since utilities are emitted further up the file. */
+.btn-ghost-sm {
+  font-size: 11px;
+  padding: 6px 10px;
+}
+
 .noise-overlay {
   position: fixed;
   inset: 0;
@@ -289,10 +297,15 @@ textarea::placeholder {
   inset: -20%;
   border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
   background:
-    radial-gradient(circle at 34% 30%, #f97316cc 0%, #f9731666 40%, transparent 74%),
+    radial-gradient(
+      circle at 34% 30%,
+      #f97316cc 0%,
+      #f9731666 40%,
+      transparent 74%
+    ),
     /* Three distinct lobes rather than a smooth sweep — the angular contrast
        is what makes the rotation legible once the layer is blurred. */
-      conic-gradient(
+    conic-gradient(
         from 140deg,
         #f9731618,
         #f97316cc 18%,
@@ -601,7 +614,13 @@ section[id] {
   overflow: hidden;
   pointer-events: none;
   user-select: none;
-  mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 20%,
+    #000 80%,
+    transparent
+  );
   -webkit-mask-image: linear-gradient(
     90deg,
     transparent,
@@ -622,8 +641,8 @@ section[id] {
   line-height: 1;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #ffffff;
-  opacity: 0.03;
+  color: #ff6a00;
+  opacity: 0.08;
   padding-right: 48px;
   white-space: nowrap;
 }
