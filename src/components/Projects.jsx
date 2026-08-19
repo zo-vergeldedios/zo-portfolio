@@ -83,8 +83,12 @@ export default function Projects() {
           <div className="relative">
             <div className="marquee" aria-hidden="true">
               <div className="marquee-track">
-                <span>Projects — Projects — Projects — </span>
-                <span>Projects — Projects — Projects — </span>
+                <span>
+                  Projects Projects Projects Projects Projects Projects
+                </span>
+                <span>
+                  Projects Projects Projects Projects Projects Projects
+                </span>
               </div>
             </div>
 

@@ -100,14 +100,16 @@ export default function Contact() {
                     </a>
                   </li>
                 ))}
-                <li className="flex gap-4 items-start">
-                  <span className="font-mono text-orange-500 text-xs uppercase tracking-wider w-16 flex-shrink-0 mt-1">
+                {/* items-center (not items-start) so the label lines up with
+                    the button rather than its top edge */}
+                <li className="flex gap-4 items-center">
+                  <span className="font-mono text-orange-500 text-xs uppercase tracking-wider w-16 flex-shrink-0">
                     Resume
                   </span>
                   <a
                     href={RESUME_URL}
                     download={RESUME_FILE}
-                    className="text-gray-400 hover:text-orange-500 text-sm transition-colors duration-200"
+                    className="btn-ghost btn-ghost-sm"
                     aria-label="Download resume as PDF"
                   >
                     Download PDF
