@@ -48,7 +48,10 @@ export default function Nav() {
         {/* Glowing separator between the sidebar and the sections. The
             border-r underneath carries the seam where the saber's gradient
             fades out at the top and bottom. */}
-        <span className="saber-line absolute right-0 top-0 bottom-0" aria-hidden="true" />
+        <span
+          className="saber-line absolute right-0 top-0 bottom-0"
+          aria-hidden="true"
+        />
 
         <div>
           <a
@@ -137,10 +140,9 @@ export default function Nav() {
           </a>
 
           <div className="flex items-center gap-3">
-            {/* The `!` prefixes are required: .btn-ghost is declared after
-                @tailwind utilities, so a plain text-[11px] loses to its
-                font-size:14px on source order. */}
-            {resumeLink("btn-ghost !px-2.5 !py-1.5 !gap-1.5 !text-[11px]")}
+            {/* top-[4.5px] rather than a margin: the row is items-center, so a
+                margin-top would only shift it by half its value. */}
+            {resumeLink("btn-ghost btn-ghost-sm relative top-[2px]")}
 
             <button
               type="button"
