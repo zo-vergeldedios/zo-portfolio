@@ -3,10 +3,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Single accent. Do not add further orange steps — everything
+        // accent-coloured resolves to orange-500, and glows use the
+        // approved #f97316xx alpha variants only.
         orange: {
-          400: '#fb923c',
           500: '#f97316',
-          600: '#ea580c',
         },
         dark: {
           900: '#0a0a0a',
@@ -15,7 +16,9 @@ module.exports = {
           600: '#222222',
           500: '#2a2a2a',
           400: '#333333',
-        }
+        },
+        // Sidebar surface — sits just off the #0a0a0a page background
+        sidebar: '#0F1115',
       },
       fontFamily: {
         display: ['Rajdhani', 'sans-serif'],

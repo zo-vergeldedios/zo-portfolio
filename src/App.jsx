@@ -12,15 +12,28 @@ export default function App() {
       {/* Noise texture overlay */}
       <div className="noise-overlay" />
 
+      <a href="#main" className="skip-link">
+        Skip to main content
+      </a>
+
       <Nav />
-      <main>
-        <Hero />
-        <About />
-        <Projects />
-        <Experience />
-        <Contact />
-      </main>
-      <Footer />
+
+      {/* Sidebar occupies the left 300px on desktop; content scrolls beside it */}
+      <div className="lg:pl-[300px]">
+        <main id="main">
+          <Hero />
+          <About />
+          <Projects />
+          <Experience />
+          <Contact />
+        </main>
+
+        {/* The sidebar takes over at lg and already carries the social links
+            and resume, so the footer is mobile/tablet only. */}
+        <div className="lg:hidden">
+          <Footer />
+        </div>
+      </div>
     </div>
   );
 }

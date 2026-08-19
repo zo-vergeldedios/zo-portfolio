@@ -81,22 +81,39 @@ body {
   text-shadow: 0 0 20px #f9731660;
 }
 
-.section-fade {
+.section-fade,
+.reveal {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(20px);
   transition:
-    opacity 0.7s ease,
-    transform 0.7s ease;
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
 }
-.section-fade.visible {
+.section-fade.visible,
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Child items stagger in after their container is revealed */
+.reveal [data-reveal-item] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.45s ease-out,
+    transform 0.45s ease-out;
+}
+.reveal.visible [data-reveal-item] {
   opacity: 1;
   transform: translateY(0);
 }
 
 .tech-badge {
+  display: inline-flex;
+  align-items: center;
   background: #1a1a1a;
   border: 1px solid #2a2a2a;
-  color: #ccc;
+  color: #9ca3af; /* gray-400 */
   font-family: "JetBrains Mono", monospace;
   font-size: 11px;
   padding: 4px 10px;
@@ -115,7 +132,7 @@ body {
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 2px;
-  color: #888;
+  color: #9ca3af; /* gray-400 */
   text-transform: uppercase;
   transition: color 0.2s;
   text-decoration: none;
@@ -130,8 +147,8 @@ body {
   border-radius: 6px;
   padding: 24px;
   transition:
-    border-color 0.3s,
-    transform 0.3s;
+    border-color 0.18s ease-out,
+    background-color 0.18s ease-out;
   position: relative;
   overflow: hidden;
 }
@@ -143,26 +160,26 @@ body {
   bottom: 0;
   width: 2px;
   background: linear-gradient(to bottom, transparent, #f97316, transparent);
-  box-shadow: 0 0 8px #f97316;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.18s ease-out;
 }
-.project-card:hover {
-  border-color: #333;
-  transform: translateY(-3px);
+.project-card:hover,
+.project-card:focus-within {
+  border-color: #f9731659;
+  background: #141414;
 }
-.project-card:hover::before {
+.project-card:hover::before,
+.project-card:focus-within::before {
   opacity: 1;
 }
 
 .experience-dot {
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background: #f97316;
-  box-shadow: 0 0 8px #f97316;
+  box-shadow: 0 0 0 3px #0a0a0a; /* punches through to the page surface */
   flex-shrink: 0;
-  margin-top: 5px;
 }
 
 input,
@@ -184,28 +201,49 @@ textarea:focus {
 }
 input::placeholder,
 textarea::placeholder {
-  color: #444;
+  color: #4b5563; /* gray-600 */
 }
 
-.btn-primary {
+.btn-primary,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   background: transparent;
   border: 1px solid #f97316;
   color: #f97316;
   font-family: "Rajdhani", sans-serif;
   font-size: 14px;
+  font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
   padding: 10px 16px;
+  border-radius: 4px;
   cursor: pointer;
   transition:
-    background 0.2s,
-    color 0.2s,
-    box-shadow 0.2s;
+    background-color 0.18s ease-out,
+    border-color 0.18s ease-out,
+    color 0.18s ease-out,
+    transform 0.18s ease-out;
 }
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-primary:focus-visible {
   background: #f97316;
   color: #0a0a0a;
-  box-shadow: 0 0 20px #f9731640;
+  transform: scale(1.02);
+}
+
+/* Secondary CTA — deliberately quieter than .btn-primary */
+.btn-ghost {
+  border-color: #2a2a2a;
+  color: #9ca3af; /* gray-400 */
+}
+.btn-ghost:hover,
+.btn-ghost:focus-visible {
+  border-color: #f97316;
+  color: #f97316;
+  transform: scale(1.02);
 }
 
 .noise-overlay {
@@ -217,36 +255,485 @@ textarea::placeholder {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
 }
 
-.hero-profile-img-wrapper {
+/* ---------- Hero portrait ----------
+   The source PNG is a cutout (~51% transparent), so the animated shape behind
+   it reads through around the subject instead of needing a frame. */
+
+.hero-portrait {
+  position: relative;
   width: 320px;
   height: 320px;
-  border-radius: 50%;
-  background: #f97316cc;
-  overflow: hidden;
   flex-shrink: 0;
-  box-shadow: 0 0 20px #f9731640;
+  isolation: isolate;
 }
 
-.hero-profile-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+/* Two counter-rotating, off-round blobs plus a steady glow layer.
+   Because the blob shapes are asymmetric, rotating them reads as a slow orange
+   distortion rather than a turning disc; the .hero-aura layer underneath is the
+   soft halo that makes it sit behind the subject like an aura.
+   Back to the approved #f97316 alphas only — the light-orange/grey ramp the
+   Super Saiyan version needed is gone.
+   Only transform and opacity animate, so every layer stays on the compositor. */
+
+.hero-portrait::before,
+.hero-portrait::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
-@media (max-width: 768px) {
-  .hero-profile-img-wrapper {
-    width: 200px;
-    height: 200px;
+.hero-portrait::before {
+  inset: -20%;
+  border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
+  background:
+    radial-gradient(circle at 34% 30%, #f97316cc 0%, #f9731666 40%, transparent 74%),
+    /* Three distinct lobes rather than a smooth sweep — the angular contrast
+       is what makes the rotation legible once the layer is blurred. */
+      conic-gradient(
+        from 140deg,
+        #f9731618,
+        #f97316cc 18%,
+        #f9731640 34%,
+        #f97316cc 52%,
+        #f9731618 68%,
+        #f9731666 84%,
+        #f9731618
+      );
+  /* A conic gradient varies by angle only, so it stays fully opaque right up
+     to the border-radius outline and the shape's edge reads through the blur.
+     This mask fades it out radially before it ever reaches that edge. */
+  -webkit-mask-image: radial-gradient(
+    44% 52% at 50% 50%,
+    #000 48%,
+    #000000d9 64%,
+    #00000073 80%,
+    transparent 92%
+  );
+  mask-image: radial-gradient(
+    44% 52% at 50% 50%,
+    #000 48%,
+    #000000d9 64%,
+    #00000073 80%,
+    transparent 92%
+  );
+  filter: blur(18px);
+  animation: portraitSwirl 11s linear infinite;
+}
+
+.hero-portrait::after {
+  inset: -11%;
+  border-radius: 63% 37% 44% 56% / 56% 63% 37% 44%;
+  background: conic-gradient(
+    from 300deg,
+    transparent,
+    #f97316cc 20%,
+    transparent 42%,
+    #f9731666 62%,
+    transparent 84%,
+    #f9731659 96%,
+    transparent
+  );
+  -webkit-mask-image: radial-gradient(
+    52% 42% at 50% 50%,
+    #000 42%,
+    #000000cc 60%,
+    #00000066 76%,
+    transparent 88%
+  );
+  mask-image: radial-gradient(
+    52% 42% at 50% 50%,
+    #000 42%,
+    #000000cc 60%,
+    #00000066 76%,
+    transparent 88%
+  );
+  filter: blur(12px);
+  animation: portraitSwirlReverse 16s linear infinite;
+}
+
+/* The glow itself — sits still and breathes, so the rotation above reads as
+   movement within a steady aura rather than the whole halo swinging around. */
+.hero-aura {
+  position: absolute;
+  inset: -26%;
+  z-index: 0;
+  pointer-events: none;
+  /* No border-radius: nothing here should have a shape to clip against.
+     Explicit 46%/52% radii make the halo an oval rather than a disc, and keep
+     the gradient's 100% inside the box (the default `farthest-corner` put it
+     past the corner, so the gradient was still ~6% opaque where the old
+     border-radius clipped it — that was the visible circle). Fully transparent
+     by 88% of those radii, so the halo dissolves into the page. */
+  background: radial-gradient(
+    46% 52% at 50% 52%,
+    #f97316cc 0%,
+    #f9731666 30%,
+    #f9731640 50%,
+    #f9731618 68%,
+    #f9731608 78%,
+    transparent 88%
+  );
+  filter: blur(26px);
+  /* Taper the bottom so the halo dies out with the portrait's own fade */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 62%,
+    #00000059 86%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 62%,
+    #00000059 86%,
+    transparent 100%
+  );
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+  animation: auraGlow 4.5s ease-in-out infinite;
+}
+
+@keyframes portraitSwirl {
+  from {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate3d(0, 0, 0) rotate(180deg) scale(1.05);
+  }
+  to {
+    transform: translate3d(0, 0, 0) rotate(360deg) scale(1);
   }
 }
 
-.tech-badge-manual {
-  border-color: #ff6a00;
-  color: #ff6a00;
+@keyframes portraitSwirlReverse {
+  from {
+    transform: translate3d(0, 0, 0) rotate(360deg) scale(1.03);
+  }
+  50% {
+    transform: translate3d(0, 0, 0) rotate(180deg) scale(0.96);
+  }
+  to {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1.03);
+  }
 }
 
-.tech-badge-ai {
-  border-color: #ff6a00;
-  color: #ff6a00;
+@keyframes auraGlow {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1.06);
+  }
+}
+
+.hero-portrait-img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  /* Gradual bottom dissolve. The mid stop keeps the ramp from banding the
+     way a straight two-stop gradient does. */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 55%,
+    #00000059 82%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 55%,
+    #00000059 82%,
+    transparent 100%
+  );
+}
+
+@media (max-width: 767px) {
+  .hero-portrait {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+/* ---------- Shared layout / rhythm (8px scale) ---------- */
+
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+@media (min-width: 1024px) {
+  section[id] {
+    scroll-margin-top: 32px;
+  }
+}
+
+/* ---------- Numbered section labels ---------- */
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #6b7280; /* gray-500 */
+  margin-bottom: 12px;
+}
+.section-label .section-label-num {
+  color: #f97316;
+}
+.section-label .section-label-rule {
+  height: 1px;
+  width: 40px;
+  background: #2a2a2a;
+}
+
+/* ---------- Sidebar navigation ---------- */
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #9ca3af; /* gray-400 */
+  padding: 8px 0;
+  text-decoration: none;
+  transition: color 0.18s ease-out;
+}
+.sidebar-link .sidebar-indicator {
+  height: 1px;
+  width: 24px;
+  background: #333;
+  transition:
+    width 0.18s ease-out,
+    background-color 0.18s ease-out;
+}
+.sidebar-link:hover,
+.sidebar-link:focus-visible {
+  color: #e8e8e8;
+}
+.sidebar-link:hover .sidebar-indicator,
+.sidebar-link:focus-visible .sidebar-indicator {
+  width: 48px;
+  background: #6b7280; /* gray-500 */
+}
+.sidebar-link.active {
+  color: #f97316;
+}
+.sidebar-link.active .sidebar-indicator {
+  width: 56px;
+  background: #f97316;
+}
+
+/* ---------- Availability indicator ---------- */
+
+/* ---------- Skip link ---------- */
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 60;
+  background: #111;
+  border: 1px solid #f97316;
+  color: #f97316;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: top 0.18s ease-out;
+}
+.skip-link:focus {
+  top: 16px;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.6;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #9ca3af; /* gray-400 */
+}
+.status-dot {
+  margin-top: 5px;
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f97316;
+  animation: statusPulse 2.4s ease-in-out infinite;
+}
+@keyframes statusPulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 #f9731666;
+  }
+  50% {
+    opacity: 0.65;
+    box-shadow: 0 0 0 4px transparent;
+  }
+}
+
+/* ---------- Projects header marquee ---------- */
+
+.marquee {
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 20%,
+    #000 80%,
+    transparent
+  );
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 40s linear infinite;
+}
+.marquee-track span {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 700;
+  font-size: clamp(48px, 9vw, 104px);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+  opacity: 0.03;
+  padding-right: 48px;
+  white-space: nowrap;
+}
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- Hero ambient pulse ----------
+   Compositor-only: the layer is painted once and only its `opacity` is
+   animated, so there is no layout, no repaint, and no main-thread work per
+   frame. Effective tint cycles between roughly #f9731608 and #f9731618. */
+
+.hero-pulse {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 55% at 75% 15%, #f9731618 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 15% 90%, #f9731610 0%, transparent 70%);
+  will-change: opacity;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  animation: heroPulse 9s ease-in-out infinite;
+}
+
+@keyframes heroPulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ---------- Hero entrance stagger ---------- */
+
+.hero-stagger > [data-hero-item] {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroIn 0.5s ease-out forwards;
+}
+@keyframes heroIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Focus visibility ---------- */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #f97316;
+  outline-offset: 3px;
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .section-fade,
+  .reveal,
+  .reveal [data-reveal-item] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero-stagger > [data-hero-item] {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  .marquee-track,
+  .status-dot,
+  .saber-line {
+    animation: none;
+  }
+  .hero-pulse {
+    animation: none;
+    opacity: 0.75;
+    will-change: auto;
+  }
+  .hero-portrait::before,
+  .hero-portrait::after,
+  .hero-aura {
+    animation: none;
+    will-change: auto;
+  }
+  .btn-primary:hover,
+  .btn-ghost:hover,
+  .btn-primary:focus-visible,
+  .btn-ghost:focus-visible {
+    transform: none;
+  }
+}
+
+/* Was two byte-identical rules (.tech-badge-manual / .tech-badge-ai) on a
+   stray #ff6a00. Merged into one accent modifier on #f97316. */
+.tech-badge-accent {
+  border-color: #f97316;
+  color: #f97316;
 }

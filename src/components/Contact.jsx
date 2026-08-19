@@ -1,20 +1,33 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import useReveal from "../hooks/useReveal";
+import SectionLabel from "./SectionLabel";
+import { RESUME_FILE, RESUME_URL } from "../constants";
+
+const DIRECT_LINKS = [
+  {
+    label: "Email",
+    value: "zo.vergeldedios@gmail.com",
+    href: "mailto:zo.vergeldedios@gmail.com",
+    external: false,
+  },
+  {
+    label: "GitHub",
+    value: "github.com/zo-vergeldedios",
+    href: "https://github.com/zo-vergeldedios",
+    external: true,
+  },
+  {
+    label: "LinkedIn",
+    value: "linkedin.com/in/zovergeldedios",
+    href: "https://linkedin.com/in/zovergeldedios",
+    external: true,
+  },
+];
 
 export default function Contact() {
-  const ref = useRef(null);
+  const ref = useReveal({ threshold: 0.1 });
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState(null); // null | 'sending' | 'sent' | 'error'
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) ref.current?.classList.add("visible");
-      },
-      { threshold: 0.1 },
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -44,7 +57,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 relative">
+    <section id="contact" className="py-24 relative" aria-labelledby="contact-title">
       <div
         className="absolute bottom-0 right-0 w-96 h-64 pointer-events-none"
         style={{
@@ -54,14 +67,15 @@ export default function Contact() {
       />
 
       <div className="max-w-5xl mx-auto px-6">
-        <div ref={ref} className="section-fade">
-          <p className="font-mono text-orange-500 text-xs tracking-widest uppercase mb-3">
-            // contact
-          </p>
-          <h2 className="font-display font-bold text-white text-4xl mb-3">
+        <div ref={ref} className="reveal">
+          <SectionLabel number="04">Contact</SectionLabel>
+          <h2
+            id="contact-title"
+            className="font-display font-bold text-white text-3xl md:text-4xl mb-4"
+          >
             Let's Connect
           </h2>
-          <p className="text-gray-500 mb-10 max-w-md">
+          <p className="text-gray-400 mb-12 max-w-md leading-relaxed">
             Open to opportunities and collaborations. Feel free to reach out if
             you'd like to connect, discuss a role, or share an idea.
           </p>
@@ -69,68 +83,86 @@ export default function Contact() {
           <div className="grid md:grid-cols-2 gap-12">
             {/* Direct info */}
             <div>
-              <div className="space-y-4 mb-8">
-                {[
-                  {
-                    label: "Email",
-                    value: "zo.vergeldedios@gmail.com",
-                    href: "mailto:zo.vergeldedios@gmail.com",
-                  },
-                  {
-                    label: "GitHub",
-                    value: "github.com/zo-vergeldedios",
-                    href: "https://github.com/zo-vergeldedios",
-                  },
-                  {
-                    label: "LinkedIn",
-                    value: "linkedin.com/in/zovergeldedios",
-                    href: "https://linkedin.com/in/zovergeldedios",
-                  },
-                ].map(({ label, value, href }) => (
-                  <div key={label} className="flex gap-4 items-start">
-                    <span className="font-mono text-orange-500 text-xs uppercase w-16 flex-shrink-0 mt-1">
+              <ul className="space-y-4 list-none p-0">
+                {DIRECT_LINKS.map(({ label, value, href, external }) => (
+                  <li key={label} className="flex gap-4 items-start">
+                    <span className="font-mono text-orange-500 text-xs uppercase tracking-wider w-16 flex-shrink-0 mt-1">
                       {label}
                     </span>
                     <a
                       href={href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-gray-400 hover:text-orange-500 text-sm transition-colors break-all"
+                      {...(external
+                        ? { target: "_blank", rel: "noreferrer" }
+                        : {})}
+                      className="text-gray-400 hover:text-orange-500 text-sm transition-colors duration-200 break-all"
                     >
                       {value}
                     </a>
-                  </div>
+                  </li>
                 ))}
-              </div>
+                <li className="flex gap-4 items-start">
+                  <span className="font-mono text-orange-500 text-xs uppercase tracking-wider w-16 flex-shrink-0 mt-1">
+                    Resume
+                  </span>
+                  <a
+                    href={RESUME_URL}
+                    download={RESUME_FILE}
+                    className="text-gray-400 hover:text-orange-500 text-sm transition-colors duration-200"
+                    aria-label="Download resume as PDF"
+                  >
+                    Download PDF
+                  </a>
+                </li>
+              </ul>
             </div>
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
-              <input
-                type="text"
-                name="name"
-                placeholder="Your name"
-                value={form.name}
-                onChange={handleChange}
-                required
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Your email"
-                value={form.email}
-                onChange={handleChange}
-                required
-              />
-              <textarea
-                name="message"
-                placeholder="Your message"
-                rows={5}
-                value={form.message}
-                onChange={handleChange}
-                required
-                style={{ resize: "none" }}
-              />
+              <div>
+                <label htmlFor="contact-name" className="sr-only">
+                  Your name
+                </label>
+                <input
+                  id="contact-name"
+                  type="text"
+                  name="name"
+                  autoComplete="name"
+                  placeholder="Your name"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="contact-email" className="sr-only">
+                  Your email
+                </label>
+                <input
+                  id="contact-email"
+                  type="email"
+                  name="email"
+                  autoComplete="email"
+                  placeholder="Your email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="contact-message" className="sr-only">
+                  Your message
+                </label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  placeholder="Your message"
+                  rows={5}
+                  value={form.message}
+                  onChange={handleChange}
+                  required
+                  style={{ resize: "none" }}
+                />
+              </div>
               <button
                 type="submit"
                 className="btn-primary w-full"
@@ -138,16 +170,18 @@ export default function Contact() {
               >
                 {status === "sending" ? "Sending..." : "Send Message"}
               </button>
-              {status === "sent" && (
-                <p className="font-mono text-xs text-orange-500 text-center">
-                  Message sent. I'll get back to you.
-                </p>
-              )}
-              {status === "error" && (
-                <p className="font-mono text-xs text-red-500 text-center">
-                  Something went wrong. Email me directly.
-                </p>
-              )}
+              <p className="font-mono text-xs text-center" aria-live="polite">
+                {status === "sent" && (
+                  <span className="text-orange-500">
+                    Message sent. I'll get back to you.
+                  </span>
+                )}
+                {status === "error" && (
+                  <span className="text-red-500">
+                    Something went wrong. Email me directly.
+                  </span>
+                )}
+              </p>
             </form>
           </div>
         </div>

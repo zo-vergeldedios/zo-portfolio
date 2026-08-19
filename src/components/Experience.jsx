@@ -1,8 +1,9 @@
-import { useEffect, useRef } from "react";
+import useReveal from "../hooks/useReveal";
+import SectionLabel from "./SectionLabel";
 
 const EXPERIENCE = [
   {
-    role: "Junior Software Developer",
+    role: "Junior Software Engineer",
     company: "The Hog",
     badge: "YC-Backed",
     period: "Jan 2026 – Mar 2026",
@@ -50,107 +51,117 @@ const AWARDS = [
 ];
 
 export default function Experience() {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) ref.current?.classList.add("visible");
-      },
-      { threshold: 0.1 },
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+  const ref = useReveal({ threshold: 0.1 });
 
   return (
-    <section id="experience" className="py-24">
+    <section
+      id="experience"
+      className="py-24"
+      aria-labelledby="experience-title"
+    >
       <div className="max-w-5xl mx-auto px-6">
-        <div ref={ref} className="section-fade">
-          <p className="font-mono text-orange-500 text-xs tracking-widest uppercase mb-3">
-            // experience
-          </p>
-          <h2 className="font-display font-bold text-white text-4xl mb-10">
+        <div ref={ref} className="reveal">
+          <SectionLabel number="03">Experience</SectionLabel>
+          <h2
+            id="experience-title"
+            className="font-display font-bold text-white text-3xl md:text-4xl mb-12"
+          >
             The Roles Behind the Growth
           </h2>
 
           {/* Timeline */}
           <div className="relative">
             {/* Vertical line */}
-            <div className="absolute left-4 top-0 bottom-0 w-px bg-dark-500 hidden md:block" />
+            <div
+              className="absolute left-[4px] top-3 bottom-3 w-px bg-dark-600 hidden md:block"
+              aria-hidden="true"
+            />
 
-            <div className="space-y-10">
-              {EXPERIENCE.map((exp) => (
-                <div key={exp.role} className="md:pl-14 relative">
-                  <div className="experience-dot absolute left-0 top-1 hidden md:block" />
-                  <div className="bg-dark-700 border border-dark-500 rounded-md p-6 card-accent">
-                    <div className="flex flex-wrap justify-between items-start gap-2 mb-3">
-                      <div>
-                        <h3 className="font-display font-semibold text-white text-lg">
-                          {exp.role}
-                        </h3>
-                        <p className="text-orange-500 text-sm font-medium">
-                          {exp.company}
-                          {exp.badge && (
-                            <span className="ml-2 font-mono text-xs bg-orange-500/10 border border-orange-500/30 text-orange-400 px-2 py-0.5 rounded">
-                              {exp.badge}
-                            </span>
-                          )}
-                        </p>
-                      </div>
-                      <div className="text-right">
-                        <p className="font-mono text-xs text-gray-500">
-                          {exp.period}
-                        </p>
-                        <p className="font-mono text-xs text-gray-600">
-                          {exp.location}
-                        </p>
-                      </div>
-                    </div>
-                    <ul className="space-y-2 mb-4">
-                      {exp.points.map((pt, i) => (
-                        <li
-                          key={i}
-                          className="text-gray-400 text-sm leading-relaxed flex gap-2"
-                        >
-                          <span className="text-orange-500/50 flex-shrink-0">
-                            —
+            <ol className="list-none p-0 space-y-8">
+              {EXPERIENCE.map((exp, i) => (
+                <li
+                  key={exp.role}
+                  className="md:pl-10 relative"
+                  data-reveal-item
+                  style={{ transitionDelay: `${i * 80}ms` }}
+                >
+                  <span
+                    className="experience-dot absolute left-0 top-3 hidden md:block"
+                    aria-hidden="true"
+                  />
+                  <article className="bg-dark-800 border border-dark-600 rounded-md p-6 transition-colors duration-200 hover:border-orange-500/40">
+                  <div className="flex flex-wrap justify-between items-start gap-2 mb-4">
+                    <div>
+                      <h3 className="font-display font-semibold text-white text-lg">
+                        {exp.role}
+                      </h3>
+                      <p className="text-orange-500 text-sm font-medium mt-1">
+                        {exp.company}
+                        {exp.badge && (
+                          <span className="ml-2 font-mono text-[10px] uppercase tracking-wider bg-orange-500/10 border border-orange-500/30 text-orange-500 px-2 py-0.5 rounded">
+                            {exp.badge}
                           </span>
-                          {pt}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="flex flex-wrap gap-2">
-                      {exp.tech.map((t) => (
-                        <span key={t} className="tech-badge">
-                          {t}
-                        </span>
-                      ))}
+                        )}
+                      </p>
+                    </div>
+                    <div className="md:text-right">
+                      <p className="font-mono text-xs text-gray-500">
+                        {exp.period}
+                      </p>
+                      <p className="font-mono text-xs text-gray-500 mt-1">
+                        {exp.location}
+                      </p>
                     </div>
                   </div>
-                </div>
+
+                  <ul className="space-y-2 mb-6">
+                    {exp.points.map((pt) => (
+                      <li
+                        key={pt}
+                        className="text-gray-400 text-sm leading-relaxed flex gap-3"
+                      >
+                        <span
+                          className="text-orange-500/60 flex-shrink-0"
+                          aria-hidden="true"
+                        >
+                          —
+                        </span>
+                        {pt}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <ul className="flex flex-wrap gap-2 list-none p-0">
+                    {exp.tech.map((t) => (
+                      <li key={t} className="tech-badge">
+                        {t}
+                      </li>
+                    ))}
+                  </ul>
+                  </article>
+                </li>
               ))}
-            </div>
+            </ol>
           </div>
 
           {/* Education */}
-          <div className="mt-14">
-            <p className="font-mono text-orange-500 text-xs tracking-widest uppercase mb-4">
-              // education
-            </p>
-            <div className="bg-dark-700 border border-dark-500 rounded-md p-6 card-accent">
+          <div className="mt-16">
+            <SectionLabel>Education</SectionLabel>
+            <div className="bg-dark-800 border border-dark-600 rounded-md p-6 transition-colors duration-200 hover:border-orange-500/40">
               <div className="flex flex-wrap justify-between items-start gap-2">
                 <div>
                   <h3 className="font-display font-semibold text-white text-lg">
                     {EDUCATION.degree}
                   </h3>
-                  <p className="text-orange-500 text-sm">{EDUCATION.school}</p>
+                  <p className="text-orange-500 text-sm mt-1">
+                    {EDUCATION.school}
+                  </p>
                 </div>
-                <div className="text-right">
+                <div className="md:text-right">
                   <p className="font-mono text-xs text-gray-500">
                     {EDUCATION.period}
                   </p>
-                  <p className="font-mono text-xs text-gray-600">
+                  <p className="font-mono text-xs text-gray-500 mt-1">
                     {EDUCATION.location}
                   </p>
                 </div>
@@ -159,26 +170,26 @@ export default function Experience() {
           </div>
 
           {/* Awards */}
-          <div className="mt-14">
-            <p className="font-mono text-orange-500 text-xs tracking-widest uppercase mb-4">
-              // awards
-            </p>
-            <div className="grid md:grid-cols-2 gap-4">
+          <div className="mt-16">
+            <SectionLabel>Awards</SectionLabel>
+            <ul className="grid md:grid-cols-2 gap-4 list-none p-0">
               {AWARDS.map((a) => (
-                <div
+                <li
                   key={a.title}
-                  className="bg-dark-700 border border-dark-500 rounded-md p-5 card-accent"
+                  className="bg-dark-800 border border-dark-600 rounded-md p-6 transition-colors duration-200 hover:border-orange-500/40"
                 >
-                  <h4 className="font-display font-semibold text-white mb-1">
+                  <h3 className="font-display font-semibold text-white mb-2">
                     {a.title}
-                  </h4>
+                  </h3>
                   <p className="font-mono text-xs text-orange-500 mb-2">
                     {a.org}
                   </p>
-                  <p className="text-gray-500 text-sm">{a.desc}</p>
-                </div>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {a.desc}
+                  </p>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
       </div>
