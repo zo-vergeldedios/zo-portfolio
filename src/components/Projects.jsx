@@ -3,7 +3,7 @@ import SectionLabel from "./SectionLabel";
 
 const PROJECTS = [
   {
-    title: "FitDex",
+    title: "Gorilya - Fitness Tracker",
     desc: "Full-stack workout tracker app where users build workout programs, assign exercises per day, and track sets, reps, and weights. Supports progressive overload by saving per-session data to Supabase.",
     tech: [
       "JavaScript",
@@ -14,8 +14,8 @@ const PROJECTS = [
       "SQL",
       "Built Manually",
     ],
-    github: "https://github.com/zo-vergeldedios/fitdex",
-    live: "https://fitdex-beige.vercel.app/",
+    github: "https://github.com/zo-vergeldedios/gorilya-fitness-tracker",
+    live: "https://gorilya.app/",
     status: "Live & Built",
   },
   {
