@@ -3,30 +3,53 @@ import SectionLabel from "./SectionLabel";
 
 const EXPERIENCE = [
   {
+    role: "Real Estate Salesperson",
+    company: "Independent",
+    badge: null,
+    period: "Mar 2021 – Jun 2024",
+    location: "Makati, Metro Manila",
+    points: [
+      "Generated and qualified inbound and outbound leads through 30–50 daily outreach attempts, setting 2–5 appointments per week.",
+      "Managed prospect pipelines, conducted client consultations, and negotiated $4M+ in residential and commercial transactions.",
+      "Built and maintained client relationships across a portfolio of 50+ rental and for-sale properties.",
+    ],
+    tech: [
+      "Outbound Prospecting",
+      "Lead Qualification",
+      "Pipeline Management",
+      "Consultative Selling",
+    ],
+  },
+  {
+    role: "Financial Advisor",
+    company: "AIA Philippines (formerly Philam Life)",
+    badge: "Top 10%",
+    period: "Aug 2018 – Jan 2021",
+    location: "Makati, Metro Manila",
+    points: [
+      "Made approximately 20 outbound calls daily, generating 2–4 appointments per week.",
+      "Conducted needs-based consultations, handled objections, and recommended insurance and investment solutions aligned with clients' financial goals.",
+      "Ranked among the top 10% of 8,000+ advisors company-wide in 2019.",
+    ],
+    tech: [
+      "Outbound Sales",
+      "Appointment Setting",
+      "Objection Handling",
+      "Consultative Selling",
+    ],
+  },
+  {
     role: "Junior Software Engineer",
     company: "The Hog",
     badge: "YC-Backed",
     period: "Jan 2026 – Mar 2026",
     location: "San Francisco, CA",
     points: [
-      "Used PostHog to analyze user behavior and track which AI agents and features drove engagement.",
-      "Conducted manual QA testing to identify bugs and support service stability.",
-      "Worked with Supabase, SQL, and Trigger.dev in a fast-moving startup environment.",
+      "Analyzed product usage in PostHog to understand feature engagement and identify opportunities to improve the user experience.",
+      "Tested AI product workflows to identify bugs and support product quality.",
+      "Worked with JavaScript, SQL, Supabase, and Trigger.dev in a fast-moving startup environment.",
     ],
     tech: ["PostHog", "JavaScript", "SQL", "Supabase", "Trigger.dev", "Linear"],
-  },
-  {
-    role: "Digital Marketing Specialist",
-    company: "Maxxsecure Insurances Inc.",
-    badge: null,
-    period: "Jan 2020 – Dec 2024",
-    location: "Makati, Metro Manila",
-    points: [
-      "Oversaw digital marketing operations including website updates and online campaigns.",
-      "Integrated Google Ads and analytics, driving measurable traffic improvements.",
-      "Managed cross-functional communication across digital channels.",
-    ],
-    tech: ["Google Ads", "Analytics", "Web Operations"],
   },
 ];
 
@@ -44,9 +67,14 @@ const AWARDS = [
     desc: "Top rookie speaker across all Toastmasters clubs in Metro Manila.",
   },
   {
+    title: "Top 10% Financial Advisor",
+    org: "AIA Philippines (formerly Philam Life) — 2019",
+    desc: "Ranked among the top 10% of 8,000+ financial advisors company-wide.",
+  },
+  {
     title: "Swim Junkie Challenge 5K — 2nd Place",
     org: "Men's 20–29 Age Group — 2023",
-    desc: "5km open water swim event in Caramoan.",
+    desc: "Placed second in the 5km open water swim event in Caramoan.",
   },
 ];
 
@@ -90,54 +118,54 @@ export default function Experience() {
                     aria-hidden="true"
                   />
                   <article className="bg-dark-800 border border-dark-600 rounded-md p-6 transition-colors duration-200 hover:border-orange-500/40">
-                  <div className="flex flex-wrap justify-between items-start gap-2 mb-4">
-                    <div>
-                      <h3 className="font-display font-semibold text-white text-lg">
-                        {exp.role}
-                      </h3>
-                      <p className="text-orange-500 text-sm font-medium mt-1">
-                        {exp.company}
-                        {exp.badge && (
-                          <span className="ml-2 font-mono text-[10px] uppercase tracking-wider bg-orange-500/10 border border-orange-500/30 text-orange-500 px-2 py-0.5 rounded">
-                            {exp.badge}
-                          </span>
-                        )}
-                      </p>
+                    <div className="flex flex-wrap justify-between items-start gap-2 mb-4">
+                      <div>
+                        <h3 className="font-display font-semibold text-white text-lg">
+                          {exp.role}
+                        </h3>
+                        <p className="text-orange-500 text-sm font-medium mt-1">
+                          {exp.company}
+                          {exp.badge && (
+                            <span className="ml-2 font-mono text-[10px] uppercase tracking-wider bg-orange-500/10 border border-orange-500/30 text-orange-500 px-2 py-0.5 rounded">
+                              {exp.badge}
+                            </span>
+                          )}
+                        </p>
+                      </div>
+                      <div className="md:text-right">
+                        <p className="font-mono text-xs text-gray-500">
+                          {exp.period}
+                        </p>
+                        <p className="font-mono text-xs text-gray-500 mt-1">
+                          {exp.location}
+                        </p>
+                      </div>
                     </div>
-                    <div className="md:text-right">
-                      <p className="font-mono text-xs text-gray-500">
-                        {exp.period}
-                      </p>
-                      <p className="font-mono text-xs text-gray-500 mt-1">
-                        {exp.location}
-                      </p>
-                    </div>
-                  </div>
 
-                  <ul className="space-y-2 mb-6">
-                    {exp.points.map((pt) => (
-                      <li
-                        key={pt}
-                        className="text-gray-400 text-sm leading-relaxed flex gap-3"
-                      >
-                        <span
-                          className="text-orange-500/60 flex-shrink-0"
-                          aria-hidden="true"
+                    <ul className="space-y-2 mb-6">
+                      {exp.points.map((pt) => (
+                        <li
+                          key={pt}
+                          className="text-gray-400 text-sm leading-relaxed flex gap-3"
                         >
-                          —
-                        </span>
-                        {pt}
-                      </li>
-                    ))}
-                  </ul>
+                          <span
+                            className="text-orange-500/60 flex-shrink-0"
+                            aria-hidden="true"
+                          >
+                            —
+                          </span>
+                          {pt}
+                        </li>
+                      ))}
+                    </ul>
 
-                  <ul className="flex flex-wrap gap-2 list-none p-0">
-                    {exp.tech.map((t) => (
-                      <li key={t} className="tech-badge">
-                        {t}
-                      </li>
-                    ))}
-                  </ul>
+                    <ul className="flex flex-wrap gap-2 list-none p-0">
+                      {exp.tech.map((t) => (
+                        <li key={t} className="tech-badge">
+                          {t}
+                        </li>
+                      ))}
+                    </ul>
                   </article>
                 </li>
               ))}

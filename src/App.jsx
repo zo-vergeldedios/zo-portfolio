@@ -1,10 +1,10 @@
-import Nav from './components/Nav';
-import Hero from './components/Hero';
-import About from './components/About';
-import Projects from './components/Projects';
-import Experience from './components/Experience';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import Nav from "./components/Nav";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Projects from "./components/Projects";
+import Experience from "./components/Experience";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 export default function App() {
   return (
@@ -23,8 +23,9 @@ export default function App() {
         <main id="main">
           <Hero />
           <About />
-          <Projects />
           <Experience />
+          <Projects />
+
           <Contact />
         </main>
 

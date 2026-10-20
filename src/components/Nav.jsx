@@ -64,8 +64,8 @@ export default function Nav() {
           <p className="font-display mt-6 text-2xl font-bold leading-tight text-white">
             Zo Vergel de Dios
           </p>
-          <p className="font-mono mt-2 text-xs uppercase tracking-widest text-orange-500">
-            Software Engineer
+          <p className="mt-1 whitespace-nowrap font-mono text-[7px] sm:text-[9px] uppercase tracking-widest text-orange-500">
+            Tech Sales & Software Engineer
           </p>
 
           <p className="status-pill mt-6">

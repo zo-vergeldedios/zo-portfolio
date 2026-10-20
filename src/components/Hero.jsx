@@ -1,15 +1,14 @@
 import { RESUME_FILE, RESUME_URL } from "../constants";
 
 const TECH = [
+  "Sales",
+  "Business Development",
+  "SaaS",
+  "AI",
+  "Software Engineering",
   "JavaScript",
-  "Node.js",
-  "React",
-  "Express",
-  "Supabase",
   "SQL",
-  "PostgreSQL",
-  "HTML5",
-  "CSS3",
+  "Digital Marketing",
 ];
 
 // Entrance order: name → title → tagline → buttons → tech chips (80ms apart)
@@ -79,7 +78,7 @@ export default function Hero() {
               data-hero-item
               style={step(1)}
             >
-              Software Engineer
+              Sales & Business Development | Software Engineer{" "}
             </p>
 
             {/* Short description */}
@@ -88,8 +87,9 @@ export default function Hero() {
               data-hero-item
               style={step(2)}
             >
-              Full-stack software engineer based in the Bay Area, building web
-              applications with a background in sales and digital marketing.
+              Sales and business development professional with a technical
+              background in software engineering, digital marketing, and AI
+              products.
             </p>
 
             {/* CTA buttons */}
@@ -99,14 +99,6 @@ export default function Hero() {
               style={step(3)}
             >
               <a
-                href="https://github.com/zo-vergeldedios"
-                target="_blank"
-                rel="noreferrer"
-                className="btn-primary"
-              >
-                GitHub
-              </a>
-              <a
                 href="https://linkedin.com/in/zovergeldedios"
                 target="_blank"
                 rel="noreferrer"
@@ -114,6 +106,15 @@ export default function Hero() {
               >
                 LinkedIn
               </a>
+              <a
+                href="https://github.com/zo-vergeldedios"
+                target="_blank"
+                rel="noreferrer"
+                className="btn-primary"
+              >
+                GitHub
+              </a>
+
               <a href="#contact" className="btn-primary">
                 Contact
               </a>

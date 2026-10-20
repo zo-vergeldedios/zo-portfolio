@@ -98,7 +98,7 @@ export default function Projects() {
                 id="projects-title"
                 className="font-display font-bold text-white text-3xl md:text-4xl mb-12"
               >
-                The Work Behind the Learning
+                The Projects Behind the Progress
               </h2>
             </div>
           </div>
