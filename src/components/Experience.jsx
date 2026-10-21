@@ -22,7 +22,7 @@ const EXPERIENCE = [
   },
   {
     role: "Financial Advisor",
-    company: "AIA Philippines (formerly Philam Life)",
+    company: "AIA Philippines",
     badge: "Top 10%",
     period: "Aug 2018 – Jan 2021",
     location: "Makati, Metro Manila",
@@ -68,7 +68,7 @@ const AWARDS = [
   },
   {
     title: "Top 10% Financial Advisor",
-    org: "AIA Philippines (formerly Philam Life) — 2019",
+    org: "AIA Philippines — 2019",
     desc: "Ranked among the top 10% of 8,000+ financial advisors company-wide.",
   },
   {

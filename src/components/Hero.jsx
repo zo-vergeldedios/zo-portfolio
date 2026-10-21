@@ -87,9 +87,8 @@ export default function Hero() {
               data-hero-item
               style={step(2)}
             >
-              Sales and business development professional with a technical
-              background in software engineering, digital marketing, and AI
-              products.
+              Sales and business development professional with experience in
+              software engineering, digital marketing, and AI products.
             </p>
 
             {/* CTA buttons */}
