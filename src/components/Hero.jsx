@@ -1,14 +1,12 @@
 import { RESUME_FILE, RESUME_URL } from "../constants";
 
 const TECH = [
-  "Sales",
-  "Business Development",
-  "SaaS",
-  "AI",
-  "Software Engineering",
-  "JavaScript",
-  "SQL",
-  "Digital Marketing",
+  "Customer Relationship Management",
+  "Customer Communication",
+  "Customer Experience",
+  "Needs Assessment",
+  "Problem Solving",
+  "Operations Management",
 ];
 
 // Entrance order: name → title → tagline → buttons → tech chips (80ms apart)
@@ -59,7 +57,6 @@ export default function Hero() {
             >
               <Portrait />
             </div>
-
             {/* Name */}
             <h1
               className="font-display font-bold text-white leading-none mb-2"
@@ -78,19 +75,19 @@ export default function Hero() {
               data-hero-item
               style={step(1)}
             >
-              Sales & Business Development | Software Engineer{" "}
+              Customer Onboarding | Implementation | Software & Technology{" "}
             </p>
-
             {/* Short description */}
             <p
               className="text-gray-400 text-base max-w-md leading-relaxed mb-8"
               data-hero-item
               style={step(2)}
             >
-              Sales and business development professional with experience in
-              software engineering, digital marketing, and AI products.
+              Customer-focused professional with experience in financial
+              services, real estate, property management, digital marketing, and
+              software engineering. I enjoy helping people solve problems,
+              understand products, and get the most out of technology.
             </p>
-
             {/* CTA buttons */}
             <div
               className="flex gap-3 flex-wrap mb-10"
@@ -126,7 +123,6 @@ export default function Hero() {
                 Download Resume
               </a>
             </div>
-
             {/* Tech badges */}
             <div
               className="flex flex-wrap gap-2"

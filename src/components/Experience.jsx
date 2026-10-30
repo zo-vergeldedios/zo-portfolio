@@ -3,42 +3,6 @@ import SectionLabel from "./SectionLabel";
 
 const EXPERIENCE = [
   {
-    role: "Real Estate Salesperson",
-    company: "Independent",
-    badge: null,
-    period: "Mar 2021 – Jun 2024",
-    location: "Makati, Metro Manila",
-    points: [
-      "Generated and qualified inbound and outbound leads through 30–50 daily outreach attempts, setting 2–5 appointments per week.",
-      "Managed prospect pipelines, conducted client consultations, and negotiated $4M+ in residential and commercial transactions.",
-      "Built and maintained client relationships across a portfolio of 50+ rental and for-sale properties.",
-    ],
-    tech: [
-      "Outbound Prospecting",
-      "Lead Qualification",
-      "Pipeline Management",
-      "Consultative Selling",
-    ],
-  },
-  {
-    role: "Financial Advisor",
-    company: "AIA Philippines",
-    badge: "Top 10%",
-    period: "Aug 2018 – Jan 2021",
-    location: "Makati, Metro Manila",
-    points: [
-      "Made approximately 20 outbound calls daily, generating 2–4 appointments per week.",
-      "Conducted needs-based consultations, handled objections, and recommended insurance and investment solutions aligned with clients' financial goals.",
-      "Ranked among the top 10% of 8,000+ advisors company-wide in 2019.",
-    ],
-    tech: [
-      "Outbound Sales",
-      "Appointment Setting",
-      "Objection Handling",
-      "Consultative Selling",
-    ],
-  },
-  {
     role: "Junior Software Engineer",
     company: "The Hog",
     badge: "YC-Backed",
@@ -46,10 +10,58 @@ const EXPERIENCE = [
     location: "San Francisco, CA",
     points: [
       "Analyzed product usage in PostHog to understand feature engagement and identify opportunities to improve the user experience.",
-      "Tested AI product workflows to identify bugs and support product quality.",
-      "Worked with JavaScript, SQL, Supabase, and Trigger.dev in a fast-moving startup environment.",
+      "Tested AI product workflows, identified bugs, and supported product quality through manual QA.",
+      "Collaborated in a startup environment using JavaScript, SQL, Supabase, and Trigger.dev.",
     ],
-    tech: ["PostHog", "JavaScript", "SQL", "Supabase", "Trigger.dev", "Linear"],
+    tech: [
+      "Product Analytics",
+      "Quality Assurance",
+      "PostHog",
+      "JavaScript",
+      "SQL",
+      "Supabase",
+    ],
+  },
+  {
+    role: "Short-Term Rental Business Owner & Property Manager",
+    company: "Self-Employed",
+    badge: null,
+    period: "Jul 2023 – Oct 2026",
+    location: "Metro Manila, Philippines",
+    points: [
+      "Managed guest relationships across six short-term rental properties, serving as a primary point of contact throughout the booking and stay experience.",
+      "Guided guests through booking procedures, check-in, property information, and support requests.",
+      "Coordinated daily operations with business partners and resolved guest concerns to ensure a smooth customer experience.",
+      "Maintained Airbnb Superhost status for over two years.",
+    ],
+    tech: [
+      "Customer Relationship Management",
+      ,
+      "Customer Experience",
+      "Customer Service",
+      "Operations Management",
+      "Problem Solving",
+    ],
+  },
+  {
+    role: "Real Estate Salesperson",
+    company: "Independent",
+    badge: null,
+    period: "Mar 2021 – Jun 2024",
+    location: "Makati, Metro Manila",
+    points: [
+      "Guided prospective buyers and renters through consultations to understand their needs, evaluate requirements, and identify suitable properties.",
+      "Managed client relationships throughout the sales and leasing process, coordinating property viewings, negotiations, and follow-ups.",
+      "Supported property owners with listing strategies, market insights, and client coordination to achieve successful transactions.",
+      "Managed a portfolio of 50+ rental and for-sale properties, contributing to over $4M in transactions.",
+    ],
+    tech: [
+      "Client Relationship Management",
+      "Needs Assessment",
+      "Client Communication",
+      "Account Management",
+      "Negotiation",
+    ],
   },
 ];
 

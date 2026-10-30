@@ -4,10 +4,10 @@ import SectionLabel from "./SectionLabel";
 const FACTS = [
   { label: "Location", value: "Bay Area, CA" },
   { label: "Degree", value: "BS Information Systems" },
-  { label: "Focus", value: "Tech Sales" },
+  { label: "Focus", value: "Customer Onboarding & Implementation" },
   { label: "Experience", value: "AI Startup" },
-  { label: "Background", value: "Software Engineering & Sales" },
-  { label: "Strength", value: "Sales & Tech" },
+  { label: "Background", value: "Customer Relations & Software Engineering" },
+  { label: "Strength", value: "Communication & Problem Solving" },
 ];
 
 export default function About() {
@@ -33,19 +33,21 @@ export default function About() {
             <div className="space-y-4">
               <p className="text-gray-400 leading-relaxed">
                 I started my career in sales and digital marketing, where I
-                developed an interest in understanding customers, solving
-                problems, and helping businesses grow.
+                developed an interest in understanding customer needs, building
+                relationships, and solving problems.
               </p>
               <p className="text-gray-400 leading-relaxed">
                 My curiosity about technology led me to software engineering,
                 where I explored building web applications and worked with a
-                YC-backed AI startup. With a background spanning business and
-                technology, I've come to appreciate how the two work together.
+                YC-backed AI startup. This experience helped me understand how
+                technology products are developed and how they solve real-world
+                problems.
               </p>
               <p className="text-gray-400 leading-relaxed">
-                Based in the Bay Area, I'm focused on tech sales, bringing
-                together my sales experience and technical knowledge to help
-                companies grow.
+                Based in the Bay Area, I'm focused on Customer Onboarding and
+                Implementation, combining my customer-facing experience and
+                technical background to help people get the most out of
+                technology.
               </p>
             </div>
 

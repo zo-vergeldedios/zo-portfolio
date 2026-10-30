@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import useActiveSection from "../hooks/useActiveSection";
 import { RESUME_FILE, RESUME_URL } from "../constants";
 
-const LINKS = ["About", "Projects", "Experience", "Contact"];
-const SECTION_IDS = ["hero", "about", "projects", "experience", "contact"];
+const LINKS = ["About", "Experience", "Projects", "Contact"];
+const SECTION_IDS = ["hero", "about", "experience", "projects", "contact"];
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -65,7 +65,7 @@ export default function Nav() {
             Zo Vergel de Dios
           </p>
           <p className="mt-1 whitespace-nowrap font-mono text-[7px] sm:text-[9px] uppercase tracking-widest text-orange-500">
-            Tech Sales & Software Engineer
+            Customer Success | Tech
           </p>
 
           <p className="status-pill mt-6">
