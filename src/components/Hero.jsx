@@ -75,7 +75,7 @@ export default function Hero() {
               data-hero-item
               style={step(1)}
             >
-              Customer Onboarding | Implementation | Software & Technology{" "}
+              Customer Success | Onboarding | Software & Technology{" "}
             </p>
             {/* Short description */}
             <p
@@ -83,10 +83,10 @@ export default function Hero() {
               data-hero-item
               style={step(2)}
             >
-              Customer-focused professional with experience in financial
-              services, real estate, property management, digital marketing, and
-              software engineering. I enjoy helping people solve problems,
-              understand products, and get the most out of technology.
+              Customer-focused professional with experience in relationship
+              management, consultative sales, operations, and technology.
+              Skilled in customer communication, issue resolution, and technical
+              problem-solving, with a background in software engineering.
             </p>
             {/* CTA buttons */}
             <div
